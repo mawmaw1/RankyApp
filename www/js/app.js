@@ -1,4 +1,7 @@
-var HOST = "http://ranky-magnuslarsen.rhcloud.com/";
+// var HOST = "http://ranky-magnuslarsen.rhcloud.com/";
+
+
+var HOST = "http://139.59.211.36";
 //var HOST = "http://localhost:3000";
 
 angular.module('starter', ['ionic'])
@@ -110,6 +113,10 @@ angular.module('starter', ['ionic'])
       //   winner.rating += parseInt(kFactor*lossExpectation);
       //   loser.rating -= parseInt(kFactor*lossExpectation);
       // };
+console.log("score1")
+      console.log(match.score1)
+      console.log("score2")
+      console.log(match.score2)
 
           if(match.score1 > match.score2){
 
@@ -195,7 +202,7 @@ angular.module('starter', ['ionic'])
   }
 })
 
-  .controller('TodoCtrl', function ($scope, $timeout, $ionicModal, Projects, Players, Matches, $ionicSideMenuDelegate) {
+  .controller('TodoCtrl', function ($scope, $timeout, $ionicModal, Projects, Players, Matches, $ionicSideMenuDelegate,$timeout) {
 
     // A utility function for creating a new project
     // with the given projectTitle
@@ -215,7 +222,9 @@ angular.module('starter', ['ionic'])
     // A utility function for creating a new match
     // with the given match
     var createMatch = function (player1,player2,score1,player3,player4,score2) {
+
       var newMatch = Matches.newMatch(player1,player2,score1,player3,player4,score2);
+
       Matches.saveMatch(newMatch, $scope);
       Players.updatePlayer(newMatch)
     }
@@ -303,7 +312,13 @@ angular.module('starter', ['ionic'])
 
     // Called to create a new Match
     $scope.newMatch = function (match) {
+  console.log("b4")
+
       if (match.player1,match.player2,match.score1,match.player3,match.player4,match.score2) {
+
+        createMatch(match.player1,match.player2,match.score1,match.player3,match.player4,match.score2);
+
+      }else if((match.player1,match.player2,match.player3,match.player4) && (match.score1 == 0 | match.score2 ==0)){
         createMatch(match.player1,match.player2,match.score1,match.player3,match.player4,match.score2);
       }
       $scope.taskModal.hide();
